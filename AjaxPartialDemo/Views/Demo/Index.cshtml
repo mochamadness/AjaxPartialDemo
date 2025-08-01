@@ -1,8 +1,8 @@
 ﻿@{
-    ViewData["Title"] = "Demo AJAX Partial";
+    ViewData["Title"] = "AJAX Partial View Problem Demo";
 }
 
-<h2>AJAX Partial Update Demo</h2>
+<h2>AJAX Partial View Problem Demo</h2>
 
 <form id="frmupload" name="frmupload" method="post" action="/Demo/Upload">
     <input type="hidden" id="ID" name="ID" value="123" />
@@ -15,14 +15,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#btnupload').off('click').on('click', function (event) {
-                event.preventDefault();
-                let form = $("#frmupload");
+            $('#frmupload').on('submit', function (event) {
+                event.preventDefault(); // Always call this first!
+                let form = $(this);
                 let url = form.attr('action');
                 $.ajax({
                     type: "POST",
                     url: url,
-                    data: form.serialize(), // Serialize form data
+                    data: form.serialize(),
                     success: function (response) {
                         $("#divRESPONSE").html(response);
                     },

@@ -13,10 +13,10 @@ namespace AjaxPartialDemo.Controllers
         [HttpPost]
         public IActionResult Upload(int ID)
         {
-            // simulate some work
+            // Simulate database work
+            System.Threading.Thread.Sleep(5000);
             ViewBag.Id = ID;
             return PartialView("~/Views/Shared/_PartialView.cshtml");
         }
     }
 }
-
