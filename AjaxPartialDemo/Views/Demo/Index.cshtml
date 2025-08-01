@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Demo AJAX Partial";
+}
+
+<h2>AJAX Partial Update Demo</h2>
+
+<form id="frmupload" name="frmupload" method="post" action="/Demo/Upload">
+    <input type="hidden" id="ID" name="ID" value="123" />
+    <input id="btnupload" name="btnupload" type="submit" value="Upload" />
+</form>
+
+<div id="divRESPONSE"></div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnupload').off('click').on('click', function (event) {
+                event.preventDefault();
+                let form = $("#frmupload");
+                let url = form.attr('action');
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: form.serialize(), // Serialize form data
+                    success: function (response) {
+                        $("#divRESPONSE").html(response);
+                    },
+                    error: function (data) {
+                        alert("Error occurred while submitting the form");
+                    }
+                });
+            });
+        });
+    </script>
+}
